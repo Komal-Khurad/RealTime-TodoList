@@ -1,0 +1,36 @@
+.add-btn {
+    font-weight: bolder;
+    font-size: 30px;
+}
+.user-logo {
+    height: 70px;
+    width: 70px;
+    font-size: x-large;
+    font-weight: bolder;
+    margin: 0 0 10px 0;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+.container {
+    margin: 20px 0 20px 0;
+}
+.dashboard {
+    height: 100vh;
+    text-align: center;
+}
+.dashboard-menu {
+    background-color: skyblue
+}
+.dashboard-menu a {
+    background-color: skyblue;
+    font-weight: bolder;
+}
+.dashboard-menu a:hover {
+    font-weight: bolder;
+    background-color: blue;
+    color:white;
+}
+.dashboard-content {
+    background-color: white;
+    margin: 10rem 0 0 0;
+}

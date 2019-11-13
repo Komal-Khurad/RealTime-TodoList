@@ -1,0 +1,28 @@
+.container {
+    margin: 0 auto;
+    width: 1200px;
+}
+.logo {
+    height: 40px;
+    width: auto
+}
+.info-panels {
+    height: 70vh;
+}
+.info-panel-1 {
+    color: white;
+    background-color: skyblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.info-panel-2 {
+    height: max-content;
+    padding: 0;
+}
+.carousel-item img {
+    height: 500px;
+    width: 500px;
+}
+.footer {
+    color: white;
+    background-color: gray;
+}

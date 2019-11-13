@@ -1,0 +1,7 @@
+.add-icon {
+    color: rgb(97, 207, 243);
+    font-size: 5rem;
+}
+.add-icon:hover {
+    color: blue;
+}
