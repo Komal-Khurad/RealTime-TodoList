@@ -5,11 +5,11 @@ const response = require("./../libs/responseLib");
 const logger = require("./../libs/loggerLib");
 const check = require("../libs/checkLib");
 
-const ListModel = mongoose.model("List");
+const TodoModel = mongoose.model("List");
 
 //start create list function
 let createList = (req, res) => {
-  ListModel.findOne({ listName: req.body.listName })
+  TodoModel.findOne({ listName: req.body.listName })
     .select("-__v -_id")
     .lean()
     .exec((err, retrievedListDetails) => {
@@ -24,7 +24,7 @@ let createList = (req, res) => {
         res.send(apiResponse);
       } else if (check.isEmpty(retrievedListDetails)) {
         console.log(req.body);
-        let newList = new ListModel({
+        let newList = new TodoModel({
           listId: shortId.generate(),
           listName: req.body.listName,
           createdOn: time.now()
@@ -65,7 +65,7 @@ let createList = (req, res) => {
 
 //start get all list function
 let getAllLists = (req, res) => {
-  ListModel.find()
+  TodoModel.find()
     .select("-__v -_id")
     .lean()
     .exec((err, listData) => {
@@ -97,7 +97,7 @@ let getAllLists = (req, res) => {
 
 //start get list by id function
 let getListById = (req, res) => {
-  ListModel.findOne({ listId: req.params.listId })
+  TodoModel.findOne({ listId: req.params.listId })
     .select("-__v -_id")
     .lean()
     .exec((err, listData) => {
@@ -130,7 +130,7 @@ let getListById = (req, res) => {
 //start edit list function
 let editList = (req, res) => {
   let options = req.body;
-  ListModel.findOne({ listId: req.params.listId }, options).exec(
+  TodoModel.findOne({ listId: req.params.listId }, options).exec(
     (err, updatedList) => {
       if (err) {
         console.log(err);
@@ -161,7 +161,7 @@ let editList = (req, res) => {
 
 //start delete list function
 let deleteList = (req, res) => {
-    ListModel.findOneAndRemove({ listId: req.params.listId }).exec(
+    TodoModel.findOneAndRemove({ listId: req.params.listId }).exec(
         (err, result) => {
           if (err) {
             console.log(err);

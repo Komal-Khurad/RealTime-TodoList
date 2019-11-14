@@ -2,7 +2,8 @@
     <h1>Welcome Aboard!</h1>
     <h3>Click '+' button to add your first list</h3>
     <div>
-        <fa-icon class="add-icon" [icon]="faPlusCircle" (click)='addList()'></fa-icon>
+        <fa-icon class="add-icon" [icon]="faPlusCircle" data-target="#addlist" data-toggle = 'modal'></fa-icon>
+        <model></model>
     </div>
 </div>
 <div *ngIf='lists.length !== 0' class="p-0">

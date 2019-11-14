@@ -5,11 +5,11 @@ const response = require("./../libs/responseLib");
 const logger = require("./../libs/loggerLib");
 const check = require("../libs/checkLib");
 
-const TaskModel = mongoose.model("Task");
+const TodoModel = mongoose.model("Task");
 
 //start create task function
 let createTask = (req, res) => {
-  TaskModel.findOne({ taskName: req.body.taskName })
+  TodoModel.findOne({ taskName: req.body.taskName })
     .select('-__v -_id')
     .lean()
     .exec((err, retrievedTaskDetails) => {
@@ -24,7 +24,7 @@ let createTask = (req, res) => {
         res.send(apiResponse);
       } else if (check.isEmpty(retrievedTaskDetails)) {
         console.log(req.body);
-        let newTask = new TaskModel({
+        let newTask = new TodoModel({
           taskId: shortId.generate(),
           taskName: req.body.taskName,
           taskStatus: req.body.taskStatus,
@@ -66,7 +66,7 @@ let createTask = (req, res) => {
 
 //start get all task function
 let getAllTasks = (req, res) => {
-  TaskModel.find()
+  TodoModel.find()
     .select('-__v -_id')
     .lean()
     .exec((err, tasks) => {
@@ -98,7 +98,7 @@ let getAllTasks = (req, res) => {
 
 //start get task by id function
 let getTaskById = (req, res) => {
-  TaskModel.findOne({ taskId: req.params.taskId })
+  TodoModel.findOne({ taskId: req.params.taskId })
     .select('-__v -_id')
     .lean()
     .exec((err, task) => {
@@ -131,7 +131,7 @@ let getTaskById = (req, res) => {
 //start edit task function
 let editTask = (req, res) => {
   let options = req.body;
-  TaskModel.findOne({ taskId: req.params.taskId }, options).exec(
+  TodoModel.findOne({ taskId: req.params.taskId }, options).exec(
     (err, updatedTask) => {
       if (err) {
         console.log(err);
@@ -162,7 +162,7 @@ let editTask = (req, res) => {
 
 //start delete task function
 let deleteTask = (req, res) => {
-    TaskModel.findOneAndRemove({ taskId: req.params.taskId }).exec(
+    TodoModel.findOneAndRemove({ taskId: req.params.taskId }).exec(
         (err, result) => {
           if (err) {
             console.log(err);
