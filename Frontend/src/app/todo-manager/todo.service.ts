@@ -1,38 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private url = 'https://localhost:3000';
+  public allList: [];
+  public currentList;
+  private authToken;
+  public baseUrl = 'hhttps://localhost:3000';
 
-  constructor(public http: HttpClient, private cookie: CookieService) {}
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
-  public createList(data): Observable <any> {
-    const params = new HttpParams ()
-      .set('listName', data.listName);
+  // method to get a all lists
+  public getAllLists(): any {
+    const apiResponse = this.http.get(
+      this.baseUrl + '/api/v1/todo/list/view/all' + '?authToken=' + this.authToken
+    );
+    console.log(apiResponse);
+    return apiResponse;
+  }// end of getting all lists
 
-    this.http.post(`${this.url}/api/v1/todo/list/create`, params).subscribe(
-      (apiResponse) => {
-        
-      },
-      (err) => {
+  // method to get a particular list
+  public getSingleList(currentListId): any {
+    const apiResponse = this.http.get(
+      this.baseUrl + '/api/v1/todo/list/' + currentListId + '/view/details' + '?authToken=' + this.authToken
+    );
+    return apiResponse;
+  } // end of get list information function
 
-      });
+  public createList(listData): any {
+    const apiResponse = this.http.post(this.baseUrl + '/api/v1/todo/list/create' + '?authToken=' + this.authToken, listData);
+    return apiResponse;
   }
 
-  public getAllLists(): Observable <any> {
-    return this.http.get(`${this.url}/api/v1/todo/list/view/all`);
+  public deleteList(currentListId): any {
+    const data = {};
+    const apiResponse = this.http.post(
+      this.baseUrl + '/api/v1/todo/list/' + currentListId + '/delete' + '?authToken=' + this.authToken,
+      data
+    );
+    return apiResponse;
   }
 
-  public getListById(): Observable <any> {
-    return this.http.get(`${this.url}/api/v1/todo/list/:listId/view/details`);
-  }
-
-  public editList(): Observable <any> {
-    return this.http.get(`${this.url}/api/v1/todo/list/:listId/view/details`);
+  public editList(currentListId, listData): any {
+    const myResponse = this.http.put(
+      this.baseUrl + '/api/v1/todo/list/' + currentListId + '/edit' + '?authToken=' + this.authToken,
+      listData
+    );
+    return myResponse;
   }
 }
+
