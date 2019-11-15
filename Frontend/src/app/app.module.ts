@@ -13,14 +13,12 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppService } from './app.service';
 import { CookieService } from 'ngx-cookie-service';
-import { EditListComponent } from './edit-list/edit-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    EditListComponent
   ],
   imports: [
     BrowserModule,

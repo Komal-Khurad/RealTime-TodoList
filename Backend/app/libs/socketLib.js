@@ -13,9 +13,10 @@ const redisLib = require('./redisLib');
 const todoModel = require('../models/todoModel');
 
 const eventEmitter = new events.EventEmitter();
+
 let setServer = (server) => {
     let io = socketIo.listen(server);
-    let myIo = io.of('');
+    let myIo = io.of('/');
 
     myIo.on('connection', (socket) => {
         console.log('on connection emitting verify user');

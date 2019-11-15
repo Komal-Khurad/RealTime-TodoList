@@ -4,16 +4,19 @@ const userController = require("./../../app/controllers/userController");
 const appConfig = require("./../../config/appConfig");
 const auth = require("./../middlewares/auth");
 
-module.exports.setRouter = (app) => {
+module.exports.setRouter = app => {
   let baseUrl = `${appConfig.apiVersion}/users`;
 
-app.get(`${baseUrl}/view/all`, auth.isAuthorized, userController.getAllUser);
+  app.get(`${baseUrl}/view/all`, auth.isAuthorized, userController.getAllUser);
 
-// params: userId.
-app.get(`${baseUrl}/:userId/details`, auth.isAuthorized, userController.getSingleUser);
+  // params: userId.
+  app.get(
+    `${baseUrl}/:userId/details`,
+    auth.isAuthorized,
+    userController.getSingleUser
+  );
 
-  
-app.post(`${baseUrl}/signup`, userController.signUpFunction);
+  app.post(`${baseUrl}/signup`, userController.signUpFunction);
   /**
      * @apiGroup users
      * @apiVersion  1.0.0
@@ -90,4 +93,8 @@ app.post(`${baseUrl}/signup`, userController.signUpFunction);
     */
 
   app.post(`${baseUrl}/logout`, auth.isAuthorized, userController.logout);
+
+  app.get(`${baseUrl}/search`, auth.isAuthorized, userController.search);
+
+  app.post(`${baseUrl}/search`, auth.isAuthorized, userController.searchFriend);
 };

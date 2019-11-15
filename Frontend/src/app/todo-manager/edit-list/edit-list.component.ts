@@ -27,7 +27,7 @@ export class EditListComponent implements OnInit {
         console.log(err.errorMessage);
       }
     );
-  }// end of OnIn
+  }// end of OnInit
 
   public editList(): any {
     this.todoService.editList(this.currentList.listId, this.currentList).subscribe(

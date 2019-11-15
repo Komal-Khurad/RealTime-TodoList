@@ -16,6 +16,10 @@ import { EditButtonComponent } from './../shared/edit-button/edit-button.compone
 import { ModelComponent } from '../shared/model/model.component';
 import { TodoService } from './todo.service';
 import { ViewListComponent } from './view-list/view-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
+import { ViewTaskComponent } from './view-task/view-task.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { ViewListComponent } from './view-list/view-list.component';
     ModelComponent,
     EditListComponent,
     ViewListComponent,
+    NotFoundComponent,
+    CreateTaskComponent,
+    EditTaskComponent,
+    ViewTaskComponent,
     ],
   imports: [
     CommonModule,

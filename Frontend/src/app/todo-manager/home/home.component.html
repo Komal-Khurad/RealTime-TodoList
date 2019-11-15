@@ -3,10 +3,10 @@
         <div class="col-3 dashboard-menu p-0">
             <div class="container">
                 <div class="user-logo d-flex align-items-center justify-content-center align-self-center">
-                    KK
+                    {{initials}}
                 </div>
-                <h3>Komal Khurad</h3>
-                <p>komalkhurad@gmail.com</p>
+                <h3>{{userName}}</h3>
+                <p>{{userEmail}}</p>
             </div>
             <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action" *ngFor='let menu of menuList'>

@@ -493,6 +493,78 @@ let logout = (req, res) => {
   });
 }; //end of logout function
 
+//start of friend search function
+let search = (req, res) => {
+  UserModel.find({ userName: req.user.username }, (err, result) => {
+    if (err) {
+      console.log(err);
+      logger.error(err.message, "user Controller: search", 10);
+      let apiResponse = response.generate(
+        true,
+        `error occurred: ${err.message}`,
+        500,
+        null
+      );
+      res.send(apiResponse);
+    } else if (check.isEmpty(result)) {
+      let apiResponse = response.generate(
+        true,
+        "Could not search user",
+        404,
+        null
+      );
+      res.send(apiResponse);
+    } else {
+      let apiResponse = response.generate(
+        false,
+        "Search result found",
+        200,
+        null
+      );
+      res.send(apiResponse);
+    }
+  });
+};
+
+let searchFriend = (req, res) => {
+  var searchfriend = req.body.searchfriend;
+  if (searchfriend) {
+    var mssg = '';
+    if (searchfriend == req.user.username) {
+      searchfriend = null;
+    }
+    UserModel.find({ username: searchfriend }, (err, result) => {
+      if (err) {
+        console.log(err);
+        logger.error(err.message, "user Controller: searchFriend", 10);
+        let apiResponse = response.generate(
+          true,
+          `error occurred: ${err.message}`,
+          500,
+          null
+        );
+        res.send(apiResponse);
+      } else if (check.isEmpty(result)) {
+        let apiResponse = response.generate(
+          true,
+          "Could not search friend",
+          404,
+          null
+        );
+        res.send(apiResponse);
+      } else {
+        let apiResponse = response.generate(
+          false,
+          "Search result found",
+          200,
+          null
+        );
+        res.send(apiResponse);
+      }
+    });
+  } 
+}
+
 module.exports = {
   signUpFunction: signUpFunction,
   loginFunction: loginFunction,
@@ -500,5 +572,7 @@ module.exports = {
   getSingleUser: getSingleUser,
   editUser: editUser,
   deleteUser: deleteUser,
-  logout: logout
+  logout: logout,
+  search: search,
+  searchFriend: searchFriend
 }; // end exports

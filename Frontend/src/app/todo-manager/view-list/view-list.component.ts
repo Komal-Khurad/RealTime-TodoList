@@ -41,7 +41,7 @@ export class ViewListComponent implements OnInit, OnDestroy {
         console.log(err.errorMessage);
       }
     );
-  }
+  }// end of OnInit
 
   public deleteList(): any {
     this.todoService.deleteList(this.currentList.listId).subscribe(

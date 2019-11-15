@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TodoService } from '../todo.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'create-list',
@@ -13,6 +13,7 @@ export class CreateListComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   public listTitle: string;
 
+  lists = [];
   constructor(
     private router: Router,
     private toastr: ToastrService,

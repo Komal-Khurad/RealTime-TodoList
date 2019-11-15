@@ -28,6 +28,10 @@ let userSchema = new Schema({
     type: String,
     default: ""
   },
+  isTempPass: {
+    type: Boolean,
+    default: false
+  },
   countryCode: {
     type: Number,
     default: ""

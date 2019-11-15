@@ -52,5 +52,47 @@ export class TodoService {
     );
     return myResponse;
   }
+
+  // method to get a all tasks
+  public getAllTasks(): any {
+    const apiResponse = this.http.get(
+      this.baseUrl + '/api/v1/todo/list/task/view/all' + '?authToken=' + this.authToken
+    );
+    console.log(apiResponse);
+    return apiResponse;
+  }// end of getting all tasks
+
+  // method to get a particular task
+  public getSingleTask(currentTaskId): any {
+    const apiResponse = this.http.get(
+      this.baseUrl + '/api/v1/todo/list/task/' + currentTaskId + '/view/details' + '?authToken=' + this.authToken
+    );
+    return apiResponse;
+  } // end of get task information function
+
+   // method to create task
+  public createTask(taskData): any {
+    const apiResponse = this.http.post(this.baseUrl + '/api/v1/todo/list/task/create' + '?authToken=' + this.authToken, taskData);
+    return apiResponse;
+  }// end of create task
+
+  // method to delete task
+  public deleteTask(currentTaskId): any {
+    const data = {};
+    const apiResponse = this.http.post(
+      this.baseUrl + '/api/v1/todo/list/task/' + currentTaskId + '/delete' + '?authToken=' + this.authToken,
+      data
+    );
+    return apiResponse;
+  }// end of delete task
+
+  public editTask(currentTaskId, taskData): any {
+    const myResponse = this.http.put(
+      this.baseUrl + '/api/v1/todo/list/task/' + currentTaskId + '/edit' + '?authToken=' + this.authToken,
+      taskData
+    );
+    return myResponse;
+  }
+
 }
 
